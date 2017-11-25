@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+        db:
+                image: postgres
+        web:
+                build: ./backend
+                command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn backend.wsgi -b 0.0.0.0:8080"
+                volumes:
+                        - ./backend:/code
+                expose:
+                        - "8080"
+                depends_on:
+                        - db
+        nginx:
+                image: nginx
+                volumes:
+                        - ./frontend:/var/www/html
+                        - ./config/nginx:/etc/nginx/conf.d
+                ports:
+                        - "8000:8000"
+                depends_on:
+                        - web
