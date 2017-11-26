@@ -5,7 +5,7 @@ services:
                 image: postgres
         web:
                 build: ./backend
-                command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn backend.wsgi -b 0.0.0.0:8080"
+                command: bash -c "python manage.py collectstatic --noinput && python manage.py makemigrations && python manage.py migrate && gunicorn backend.wsgi -b 0.0.0.0:8080"
                 volumes:
                         - ./backend:/code
                 expose:
@@ -17,6 +17,7 @@ services:
                 image: nginx
                 volumes:
                         - ./frontend:/var/www/html
+                        - ./backend/static:/var/www/static
                         - ./config/nginx:/etc/nginx/conf.d
                 ports:
                         - "8000:8000"
