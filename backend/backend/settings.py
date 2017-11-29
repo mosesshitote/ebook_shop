@@ -45,7 +45,8 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
-    'authentication'
+    'authentication',
+    'newsletter'
 ]
 
 MIDDLEWARE = [
