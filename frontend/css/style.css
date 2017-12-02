@@ -1,0 +1,12 @@
+.e-book {
+	border: 1px solid #d1d1d1;
+	border-radius: 5px;
+	padding: 20px 0px !important;
+}
+.e-book img{
+	display: block;
+	margin: 0 auto;
+}
+.e-book .description {
+	text-align: center;
+}
