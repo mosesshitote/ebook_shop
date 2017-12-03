@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'authentication',
-    'newsletter'
+    'newsletter',
+    'review',
+    'library'
 ]
 
 MIDDLEWARE = [
@@ -133,6 +135,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'upload')
 
 AUTH_USER_MODEL = 'authentication.User'
 
