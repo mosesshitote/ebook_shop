@@ -6,12 +6,6 @@ from .models import User
 from .serializers import UserSerializer, TokenSerializer
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    lookup_field = 'id'
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
 class LoginView(views.APIView):
     def post(self, request, format=None):
         data = request.data
@@ -43,9 +37,6 @@ class RegisterView(views.APIView, mixins.CreateModelMixin):
     def post(self, request, format=None):
         request.data['is_active'] = True
         return self.create(request, format=format)
-
-    def get_serializer(self, data, **kwargs):
-        return self.serializer(data=data, **kwargs)
 
 
 class LogoutView(views.APIView):

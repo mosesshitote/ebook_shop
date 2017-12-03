@@ -16,6 +16,15 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+import authentication.urls
+import newsletter.urls
+import review.urls
+import library.urls
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^authentication/', (authentication.urls.urls, 'authentication', 'authentication')),
+    url(r'^api/v1/', (newsletter.urls.urls, 'newsletter', 'newsletter')),
+    url(r'^api/v1/', (review.urls.urls, 'review', 'review')),
+    url(r'^api/v1/', (library.urls.urls, 'library', 'library')),
 ]

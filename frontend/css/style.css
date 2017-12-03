@@ -1,0 +1,30 @@
+.e-book {
+	border: 1px solid #d1d1d1;
+	border-radius: 5px;
+	padding: 20px 0px !important;
+}
+.e-book img{
+	display: block;
+	margin: 0 auto;
+}
+.e-book .description {
+	text-align: center;
+	margin: 20px 0;
+}
+.card .card-content .button a {
+	margin: 0 auto;
+	width: 100%;
+}
+
+.card .card-reveal {
+    padding: 20px;
+}
+.card .card-title {
+    font-size: 20px;
+}
+.card .card-reveal p {
+	font-size: 12px;
+}
+.card .card-image img {
+	margin: 0 auto;
+}
