@@ -32,11 +32,13 @@ class LoginView(views.APIView):
 
 
 class RegisterView(views.APIView, mixins.CreateModelMixin):
-    serializer = UserSerializer
+    serializer_class = UserSerializer
 
     def post(self, request, format=None):
-        request.data['is_active'] = True
         return self.create(request, format=format)
+
+    def get_serializer(self, data, **kwargs):
+        return self.serializer_class(data=data, **kwargs)
 
 
 class LogoutView(views.APIView):
