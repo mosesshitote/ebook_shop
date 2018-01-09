@@ -25,7 +25,7 @@ class Author(BaseModel):
 
 class Ebook(BaseModel):
     name = models.CharField(max_length=1024)
-    author = models.ForeignKey('Author')
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
     isbn = models.CharField(max_length=64)
     description = models.TextField()
     epub = models.FileField()
@@ -41,7 +41,7 @@ def one_month_later_than_now():
 
 class Loan(BaseModel):
     ebook = models.ForeignKey(Ebook)
-    client = models.ForeignKey(get_user_model())
+    client = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     expired_at = models.DateTimeField(default=one_month_later_than_now)
     # TODO: Is uuid4 is safe key?
     uuid_key = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

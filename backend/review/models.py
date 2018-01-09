@@ -5,7 +5,7 @@ from django.conf import settings
 
 
 class Review(models.Model):
-    created_by = models.ForeignKey(get_user_model())
+    created_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     content = models.TextField()
