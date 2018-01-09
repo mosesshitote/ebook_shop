@@ -30,7 +30,7 @@ SECRET_KEY = 'x4_zyaz_7i=h33&8%dop31o$^r=)b%jgobi3nvyo4*p5$8(u7+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['web']
+ALLOWED_HOSTS = ['api']
 
 
 # Application definition
