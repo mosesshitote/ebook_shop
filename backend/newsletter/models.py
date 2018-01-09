@@ -20,7 +20,7 @@ class Subscriber(models.Model):
 
 
 class MailingRequest(models.Model):
-    newsletter = models.ForeignKey(Newsletter)
+    newsletter = models.ForeignKey(Newsletter, on_delete=models.CASCADE)
     subscribers = models.ManyToManyField(Subscriber)
     send_time = models.DateTimeField(auto_now=True)
 

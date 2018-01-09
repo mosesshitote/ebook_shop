@@ -2,6 +2,7 @@ from datetime import datetime
 
 from rest_framework import viewsets, permissions, mixins
 from django.http import HttpResponse
+from django.utils import timezone
 
 from library.models import Author, Ebook, Loan
 from library.serializers import AuthorSerializer, EbookSerializer, LoanSerializer
@@ -34,7 +35,7 @@ def get_epub(request, key):
     loan = Loan.objects.get(pk=key)
     if loan is not None:
         if loan.client == request.user or request.user.is_staff:
-            if datetime.now() < loan.expired_at:
+            if timezone.make_aware(datetime.now()) < loan.expired_at:
                 with open(loan.ebook.epub.path, 'rb') as epub_file:
                     response = HttpResponse(epub_file.read(), content_type='application/epub')
                     response['Content-Disposition'] = 'attachment; filename={}.epub'.format(loan.ebook.name)

@@ -3,3 +3,5 @@
 __pycache__/
 static/
 local_settings.py
+backend/upload/
+node_modules/
