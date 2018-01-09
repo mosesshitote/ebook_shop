@@ -3,9 +3,9 @@ version: '2'
 services:
         db:
                 image: postgres
-        web:
+        api:
                 build: ./backend
-                command: bash -c "python manage.py collectstatic --noinput && python manage.py makemigrations && python manage.py migrate && gunicorn backend.wsgi -b 0.0.0.0:8080"
+                command: bash -c "python manage.py collectstatic --noinput && python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8080"
                 volumes:
                         - ./backend:/code
                 expose:
@@ -16,11 +16,11 @@ services:
         nginx:
                 image: nginx
                 volumes:
-                        - ./frontend:/var/www/html
+                        - ./frontend/dist:/var/www/html
                         - ./backend/static:/var/www/static
                         - ./config/nginx:/etc/nginx/conf.d
                 ports:
                         - "80:8000"
                 depends_on:
-                        - web
+                        - api
                 restart: always
