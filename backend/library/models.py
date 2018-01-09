@@ -40,7 +40,7 @@ def one_month_later_than_now():
  
 
 class Loan(BaseModel):
-    ebook = models.ForeignKey(Ebook)
+    ebook = models.ForeignKey(Ebook, on_delete=models.CASCADE)
     client = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     expired_at = models.DateTimeField(default=one_month_later_than_now)
     # TODO: Is uuid4 is safe key?
