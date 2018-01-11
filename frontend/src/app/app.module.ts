@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { NewsletterComponent } from './newsletter/newsletter.component';
 
 import { NewsletterService } from './newsletter/newsletter.service';
+import { MessageService } from './message.service';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { NewsletterService } from './newsletter/newsletter.service';
     MaterializeModule
   ],
   providers: [
-    NewsletterService
+    NewsletterService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })
