@@ -21,7 +21,8 @@ export class NewsletterComponent implements OnInit {
   }
 
   onSubmit() {
-    this.newsletterService.addSubscriber(this.subscriber).subscribe();
+    this.newsletterService.addSubscriber(this.subscriber)
+      .subscribe( _ => this.subscriber.email = "");
   }
 
 }
