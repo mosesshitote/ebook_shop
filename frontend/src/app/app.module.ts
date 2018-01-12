@@ -18,6 +18,8 @@ import { NewsletterComponent } from './newsletter/newsletter.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { SidenavPrivateComponent } from './sidenav-private/sidenav-private.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { EbooksComponent } from './ebooks/ebooks.component';
 
 
 @NgModule({
@@ -28,13 +30,15 @@ import { SidenavPrivateComponent } from './sidenav-private/sidenav-private.compo
     SidenavComponent,
     LoginComponent,
     RegistrationComponent,
-    SidenavPrivateComponent
+    SidenavPrivateComponent,
+    EbooksComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    MaterializeModule
+    MaterializeModule,
+    AppRoutingModule
   ],
   providers: [
     NewsletterService,
