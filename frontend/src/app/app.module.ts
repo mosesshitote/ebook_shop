@@ -10,12 +10,14 @@ import { AppComponent } from './app.component';
 import { NewsletterService } from './newsletter/newsletter.service';
 import { MessageService } from './message.service';
 import { AuthenticationService } from './authentication.service';
+import { HttpHeadersService } from './http-headers.service';
 
 import { NavigationComponent } from './navigation/navigation.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { NewsletterComponent } from './newsletter/newsletter.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { SidenavPrivateComponent } from './sidenav-private/sidenav-private.component';
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { RegistrationComponent } from './registration/registration.component';
     NavigationComponent,
     SidenavComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    SidenavPrivateComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { RegistrationComponent } from './registration/registration.component';
   providers: [
     NewsletterService,
     MessageService,
-    AuthenticationService
+    AuthenticationService,
+    HttpHeadersService
   ],
   bootstrap: [AppComponent]
 })

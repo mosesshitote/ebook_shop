@@ -1,14 +1,6 @@
 <div class="col s3">
-      <h5 class="indigo-text">Co chcesz zrobić?</h5>
-      <div class="z-depth-1 grey lighten-4 row">
-        <div class="row center">
-			<a class="waves-effect waves-light btn" href="#!" id="panel">Opinie</a>
-        </div>
-        <div class="row center">
-			<a class="waves-effect waves-light btn" href="#!" id="rent">Wypożyczenia</a>
-        </div>
-        <div class="row center">
-			<a class="waves-effect waves-light btn" href="#!" id="logout">Wyloguj</a>
-        </div>
-      </div>
+    <div class="col s10 offset-s1"> 
+        <app-login *ngIf="!auth.isAuthenticated()"></app-login>
+        <app-sidenav-private *ngIf="auth.isAuthenticated()"></app-sidenav-private>
+    </div>
 </div>
