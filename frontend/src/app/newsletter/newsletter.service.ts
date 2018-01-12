@@ -21,10 +21,10 @@ export class NewsletterService {
   ) { }
 
   addSubscriber(subscriber: Subscriber): Observable<Subscriber> {
-	return this.http.post<Subscriber>(`${this.newsletterUrl}/subscribers/`, subscriber, httpOptions)
+	  return this.http.post<Subscriber>(`${this.newsletterUrl}/subscribers/`, subscriber, httpOptions)
       .pipe(
         tap((subscriber: Subscriber) => this.message.add(`Dodano do subskrypcji`))
-      );
+    );
   }
 
 }

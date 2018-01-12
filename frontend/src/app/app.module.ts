@@ -6,16 +6,26 @@ import { MaterializeModule } from 'angular2-materialize';
 
 
 import { AppComponent } from './app.component';
-import { NewsletterComponent } from './newsletter/newsletter.component';
 
 import { NewsletterService } from './newsletter/newsletter.service';
 import { MessageService } from './message.service';
+import { AuthenticationService } from './authentication.service';
+
+import { NavigationComponent } from './navigation/navigation.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { NewsletterComponent } from './newsletter/newsletter.component';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NewsletterComponent
+    NewsletterComponent,
+    NavigationComponent,
+    SidenavComponent,
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +35,8 @@ import { MessageService } from './message.service';
   ],
   providers: [
     NewsletterService,
-    MessageService
+    MessageService,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })
