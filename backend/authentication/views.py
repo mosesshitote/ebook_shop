@@ -37,6 +37,9 @@ class RegisterView(views.APIView, mixins.CreateModelMixin):
     def post(self, request, format=None):
         request.data['is_active'] = True
         return self.create(request, format=format)
+    
+    def get_serializer(self, data):
+        return self.serializer(data=data)
 
 
 class LogoutView(views.APIView):
