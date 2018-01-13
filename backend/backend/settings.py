@@ -145,6 +145,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'upload')
 
+IMAGE_ROOT = 'images'
+
+IMAGE_URL = '/images/'
+
 AUTH_USER_MODEL = 'authentication.User'
 
 REVIEW_MODEL = 'library.Ebook'

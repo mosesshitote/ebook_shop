@@ -11,10 +11,11 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 class EbookSerializer(serializers.ModelSerializer):
     author = AuthorSerializer()
+    image_url = serializers.ReadOnlyField()
 
     class Meta:
         model = Ebook
-        fields = ('name', 'author', 'isbn', 'description',)
+        fields = ('name', 'author', 'isbn', 'description', 'image', 'id', 'image_url',)
 
 
 class LoanSerializer(serializers.ModelSerializer):
