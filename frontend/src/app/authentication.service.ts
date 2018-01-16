@@ -68,12 +68,13 @@ export class AuthenticationService {
       );
   }
 
-  getUser(): Object {
-    let user: any = localStorage.getItem('user');
-    if(user !== null) {
-      return JSON.parse(user);
+  getUser(): User {
+    let userJson  = localStorage.getItem('user');
+    let user = new User();
+    if(userJson !== null) {
+      user = JSON.parse(userJson) as User;
     }
-    return new User();
+    return user;
   }
 
   isAuthenticated(): boolean {

@@ -1,12 +1,15 @@
-      <h5 class="indigo-text">Co chcesz zrobić?</h5>
-      <div class="z-depth-1 grey lighten-4 section">
-        <div class="row center">
-			<a class="waves-effect waves-light btn" href="#!" id="panel">Opinie</a>
-        </div>
-        <div class="row center">
-			<a class="waves-effect waves-light btn" href="#!" id="rent">Wypożyczenia</a>
-        </div>
-        <div class="row center">
-			<a (click)="logout()" class="waves-effect waves-light btn" href="#!" id="logout">Wyloguj</a>
-        </div>
-      </div>
+<h5 class="indigo-text">Co chcesz zrobić?</h5>
+<div class="z-depth-1 grey lighten-4 section">
+  <div class="row center">
+    <a class="waves-effect waves-light btn">Opinie</a>
+  </div>
+  <div class="row center">
+    <a class="waves-effect waves-light btn">Wypożyczenia</a>
+  </div>
+  <div class="row center" *ngIf="user.is_staff">
+    <a href="/admin/" class="waves-effect waves-light btn">Admin</a>
+  </div>
+  <div class="row center">
+    <a (click)="logout()" class="waves-effect waves-light btn">Wyloguj</a>
+  </div>
+</div>
