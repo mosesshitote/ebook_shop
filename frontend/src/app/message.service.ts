@@ -7,8 +7,12 @@ export class MessageService {
 
   constructor() { }
   
-  add(message: string) {
+  log(message: string) {
     toast(message, 3000);
+  }
+
+  error(message: string) {
+    toast(message, 3000, 'red');
   }
 
 }

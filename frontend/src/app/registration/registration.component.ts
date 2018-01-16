@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 import { AuthenticationService } from '../authentication.service';
 
@@ -18,14 +19,15 @@ export class RegistrationComponent implements OnInit {
 
 
   constructor(
-    private auth: AuthenticationService
+    private auth: AuthenticationService,
+    private location: Location
   ) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    this.auth.register(this.user);
+    this.auth.register(this.user).subscribe();
   }
 
 }

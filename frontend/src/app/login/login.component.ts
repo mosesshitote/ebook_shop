@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.auth.login(this.username, this.password);
+    this.auth.login(this.username, this.password).subscribe();
   }
 
 }

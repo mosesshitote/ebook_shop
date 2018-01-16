@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { HttpHeadersService } from './http-headers.service';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+import { catchError, tap } from 'rxjs/operators';
 
-const httpOptions = {
-  headers: HttpHeadersService.get()
-};
+import { HttpHeadersService } from './http-headers.service';
+import { MessageService } from './message.service';
+
 
 export class User {
   username: string;
@@ -25,12 +27,17 @@ class LoginData {
 export class AuthenticationService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private message: MessageService
   ) { }
 
-  login(username: string, password: string) {
-    this.http.post<LoginData>(`/authentication/login/`, { username: username, password: password }, httpOptions)
-      .subscribe(result => this.setLoginData(result));
+  login(username: string, password: string): Observable<LoginData> {
+    return this.http.post<LoginData>(`/authentication/login/`, { username: username, password: password }, { headers: HttpHeadersService.get() })
+      .pipe(
+        tap((data: LoginData) => this.setLoginData(data)),
+        tap((data: LoginData) => this.message.log(`Zalogowano poprawne`)),
+        catchError(this.handleError<LoginData>('login'))
+      );
   }
 
   setLoginData(loginData: LoginData) {
@@ -38,9 +45,13 @@ export class AuthenticationService {
     localStorage.setItem('user', JSON.stringify(loginData.user_instance));
   }
 
-  logout() {
-    this.http.post(`/authentication/logout/`, {}, httpOptions)
-      .subscribe(_ => this.removeLoginData());
+  logout(): Observable<any> {
+    return this.http.post(`/authentication/logout/`, {}, { headers: HttpHeadersService.get() })
+      .pipe(
+        tap(_ => this.removeLoginData()),
+        tap(_ => this.message.log(`Wylogowano poprawnie`)),
+        catchError(this.handleError<any>('logout'))
+      );
   }
 
   removeLoginData() {
@@ -48,9 +59,13 @@ export class AuthenticationService {
     localStorage.removeItem('user');
   }
 
-  register(user) {
-    this.http.post(`/authentication/register/`, user, httpOptions)
-      .subscribe(result => this.login(user.username, user.password));
+  register(user): Observable<User> {
+    return this.http.post<User>(`/authentication/register/`, user, { headers: HttpHeadersService.get() })
+      .pipe(
+        tap(_ => this.message.log(`Zarejestrowano poprawnie`)),
+        tap(_ => this.login(user.username, user.password).subscribe()),
+        catchError(this.handleError<User>('register'))
+      );
   }
 
   getUser(): Object {
@@ -64,4 +79,15 @@ export class AuthenticationService {
   isAuthenticated(): boolean {
     return localStorage.getItem('token') !== null;
   }
+
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error, any): Observable<T> => {
+      console.log(`${operation} failed: ${error.message}`);
+      for(var key in error.error) {
+        error.error[key].forEach(msg => this.message.error(key + ': ' + msg));
+      }
+      return of(result as T);
+    }
+  }
+
 }

@@ -11,6 +11,7 @@ import { NewsletterService } from './newsletter/newsletter.service';
 import { MessageService } from './message.service';
 import { AuthenticationService } from './authentication.service';
 import { HttpHeadersService } from './http-headers.service';
+import { EbookService } from './ebooks/ebook.service';
 
 import { NavigationComponent } from './navigation/navigation.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -44,7 +45,8 @@ import { EbooksComponent } from './ebooks/ebooks.component';
     NewsletterService,
     MessageService,
     AuthenticationService,
-    HttpHeadersService
+    HttpHeadersService,
+    EbookService
   ],
   bootstrap: [AppComponent]
 })
