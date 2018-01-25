@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col s12"><h5>Opinie</h5></div>
+</div>
+<div class="row review" *ngFor="let review of reviews">
+  <div class="row">
+    <div class="col s9"><i class="material-icons left">person</i>{{ review.created_by.username }}</div>
+<div class="col s3 date">Dodano: {{ review.created_at | date }}</div>
+  </div>
+  <div class="row">
+    <div class="col s12">
+	  <p>{{ review.content }}</p>
+	</div>
+  </div>
+</div>
+<div class="row" *ngIf="auth.isAuthenticated()">
+  <form class="col s12" (ngSubmit)="onSubmit(newReview.value); newReview.value=''">
+    <div class="row">
+      <div class="input-field col s12">
+        <textarea id="textarea" #newReview required class="materialize-textarea"></textarea>
+        <label for="textarea">Napisz swoją opinię</label>
+      </div>
+    </div>
+    <button class="btn waves-effect waves-light" type="submit" name="action" style="float: right;">Wyślij opinię<i class="material-icons right">send</i>
+  </button>
+  </form>
+</div>
