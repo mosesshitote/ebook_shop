@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col s12"><h5>Opinie</h5></div>
+</div>
+<div class="row review" *ngFor="let review of reviews">
+  <div class="row">
+    <div class="col s9">
+      <i class="material-icons left">book</i>
+      <a routerLink="/ebook/{{ review.review_object.id }}">{{ review.review_object.name }}</a>
+    </div>
+    <div class="col s3 date">Dodano: {{ review.created_at | date }}</div>
+  </div>
+  <div class="row">
+    <div class="col s12">
+	  <p>{{ review.content }}</p>
+	</div>
+  </div>
+</div>

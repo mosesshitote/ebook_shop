@@ -6,10 +6,12 @@ from authentication.models import User
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=False)
+    is_staff = serializers.BooleanField(read_only=True)
+    is_active = serializers.BooleanField(read_only=True)
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'is_staff', 'is_active', 'password',)
+        fields = ('id', 'username', 'first_name', 'last_name', 'is_staff', 'is_active', 'password',)
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)

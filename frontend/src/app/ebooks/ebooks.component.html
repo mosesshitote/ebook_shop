@@ -1,0 +1,18 @@
+<h5 class="indigo-text">Znajdź swojego e-booka</h5>
+<div class="row flex">
+<div *ngFor="let ebook of ebooks" class="col s4">
+  <div class="card small z-depth-2">
+	<div class="card-image waves-effect waves-block waves-light">
+    <img class="activator" src="{{ ebook.image_url }}">
+  </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4"><a routerLink="/ebook/{{ ebook.id }}/">{{ ebook.name }}</a><i class="material-icons right">more_vert</i></span>
+      <div class="button"><a class="waves-effect waves-light btn" (click)="borrowEbook(ebook.id)" href="#!" id="wypozycz">Wypożycz</a></div>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4"><a routerLink="/ebook/{{ ebook.id }}/">{{ ebook.name }}</a><i class="material-icons right">close</i></span>
+      <p>{{ ebook.description }}</p>
+    </div>
+  </div>
+</div>
+</div>

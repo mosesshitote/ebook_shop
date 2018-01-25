@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 
 from django.db import models
 from django.utils import timezone
+from django.conf import settings
 from django.contrib.auth import get_user_model
 
 
@@ -28,7 +29,12 @@ class Ebook(BaseModel):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     isbn = models.CharField(max_length=64)
     description = models.TextField()
+    image = models.ImageField(blank=True, upload_to=settings.IMAGE_ROOT)
     epub = models.FileField()
+
+    @property
+    def image_url(self):
+        return self.image.url
 
     def __str__(self):
         return 'Ebook Id: {id} - {first_name} {last_name} "{name}"'.format(id=self.pk, 
@@ -43,7 +49,6 @@ class Loan(BaseModel):
     ebook = models.ForeignKey(Ebook, on_delete=models.CASCADE)
     client = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     expired_at = models.DateTimeField(default=one_month_later_than_now)
-    # TODO: Is uuid4 is safe key?
     uuid_key = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     def __str__(self):

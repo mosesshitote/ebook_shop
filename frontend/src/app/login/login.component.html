@@ -1,0 +1,26 @@
+      <h5 class="indigo-text">Zaloguj się</h5>
+      <form class="z-depth-1 grey lighten-4 row" (ngSubmit)="onSubmit()">
+        <div class="row center">
+            <div class="col offset-s1 s10 input-field">
+                <input id="username" type="text" class="validate" name="username"
+                    required
+                    [(ngModel)]="username">
+                <label for="username">Nazwa użytkownika</label>
+            </div>
+        </div>
+        <div class="row center">
+            <div class="col offset-s1 s10 input-field">
+                <input id="password" type="password" class="validate" name="password"
+                    required
+                    [(ngModel)]="password">
+                <label for="password">Hasło</label>
+            </div>
+        </div>
+        <div class="row center">
+            <button type="submit" name="btn_login" class="col s12 btn btn-large waves-effect indigo">Zaloguj</button>
+        </div>
+      </form>
+      <div class="row center">
+        <a routerLink='/register'> Utwórz konto </a>
+      </div>
+

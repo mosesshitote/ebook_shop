@@ -9,6 +9,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
     serializer_class = ReviewSerializer
     permission_classes = (permissions.IsAuthenticated, ReviewPermission)
     queryset = Review.objects.filter(is_active=True)
+    filter_fields = ('object_review', 'created_by',)
     lookup_field = 'id'
 
     def create(self, request, *args, **kwargs):

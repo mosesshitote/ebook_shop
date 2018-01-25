@@ -1,0 +1,18 @@
+<h5 class="indigo-text">Lista twoich wypożyczeń</h5>
+<div class="row flex">
+<div *ngFor="let loan of loans" class="col s4">
+  <div class="card small z-depth-2">
+    <div class="card-image waves-effect waves-block waves-light">
+    <img class="activator" src="{{ loan.ebook_object.image_url }}">
+  </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4"><a routerLink="/ebook/{{ loan.ebook_object.id }}/">{{ loan.ebook_object.name }}</a><i class="material-icons right">more_vert</i></span>
+      <div class="button"><a class="waves-effect waves-light btn" href="/api/v1/library/epub/{{ loan.uuid_key }}" id="download">Pobierz</a></div>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4"><a routerLink="/ebook/{{ loan.ebook_object.id }}/">{{ loan.ebook_object.name }}</a><i class="material-icons right">close</i></span>
+      <p>{{ loan.ebook_object.description }}</p>
+    </div>
+  </div>
+</div>
+</div>

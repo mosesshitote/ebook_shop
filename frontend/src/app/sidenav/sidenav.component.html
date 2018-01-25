@@ -1,0 +1,6 @@
+<div class="col s3">
+    <div class="col s10 offset-s1"> 
+        <app-login *ngIf="!auth.isAuthenticated()"></app-login>
+        <app-sidenav-private *ngIf="auth.isAuthenticated()"></app-sidenav-private>
+    </div>
+</div>

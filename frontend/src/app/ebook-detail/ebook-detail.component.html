@@ -1,0 +1,13 @@
+<h5 class="indigo-text">{{ ebook.name }}</h5>
+<div class="col s4 nopadding">
+  <img class="responsive-img" src="{{ ebook.image_url }}">
+</div>
+<div class="col s8">
+  <div class="description">
+    <p><strong>Autor:</strong> {{ ebook.author.first_name }} {{ ebook.author.last_name }}</p>
+    <p class="max-desc">{{ ebook.description }}</p>
+    <p><strong>Forma produktu:</strong> PDF</p>
+    <div class="button"><a class="waves-effect waves-light btn">Wypożycz</a></div>
+  </div>
+</div>
+<app-review></app-review>
