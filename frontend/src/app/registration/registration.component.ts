@@ -17,7 +17,6 @@ export class RegistrationComponent implements OnInit {
     password: ""
   };
 
-
   constructor(
     private auth: AuthenticationService,
     private location: Location

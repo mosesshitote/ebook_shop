@@ -10,6 +10,7 @@ import { MessageService } from './message.service';
 
 
 export class User {
+  id: number;
   username: string;
   first_name: string;
   last_name: string;
@@ -85,7 +86,7 @@ export class AuthenticationService {
     return (error, any): Observable<T> => {
       console.log(`${operation} failed: ${error.message}`);
       for(var key in error.error) {
-        error.error[key].forEach(msg => this.message.error(key + ': ' + msg));
+        this.message.error(error.error[key]);
       }
       return of(result as T);
     }

@@ -11,7 +11,8 @@ import { NewsletterService } from './newsletter/newsletter.service';
 import { MessageService } from './message.service';
 import { AuthenticationService } from './authentication.service';
 import { HttpHeadersService } from './http-headers.service';
-import { EbookService } from './ebooks/ebook.service';
+import { EbookService } from './ebook.service';
+import { ReviewService } from './review.service';
 
 import { NavigationComponent } from './navigation/navigation.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -21,6 +22,10 @@ import { RegistrationComponent } from './registration/registration.component';
 import { SidenavPrivateComponent } from './sidenav-private/sidenav-private.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { EbooksComponent } from './ebooks/ebooks.component';
+import { EbookDetailComponent } from './ebook-detail/ebook-detail.component';
+import { LoansComponent } from './loans/loans.component';
+import { ReviewComponent } from './review/review.component';
+import { MyReviewsComponent } from './my-reviews/my-reviews.component';
 
 
 @NgModule({
@@ -32,7 +37,11 @@ import { EbooksComponent } from './ebooks/ebooks.component';
     LoginComponent,
     RegistrationComponent,
     SidenavPrivateComponent,
-    EbooksComponent
+    EbooksComponent,
+    EbookDetailComponent,
+    LoansComponent,
+    ReviewComponent,
+    MyReviewsComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +55,8 @@ import { EbooksComponent } from './ebooks/ebooks.component';
     MessageService,
     AuthenticationService,
     HttpHeadersService,
-    EbookService
+    EbookService,
+    ReviewService
   ],
   bootstrap: [AppComponent]
 })

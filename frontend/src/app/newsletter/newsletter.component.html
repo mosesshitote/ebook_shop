@@ -1,13 +1,12 @@
-<div class="divider"></div>
-<div class="row">
-    <form class="col s6 offset-s3" (ngSubmit)="onSubmit()" #newsletterForm="ngForm">
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="email" type="email" class="validate" name="email"
-                    required
-                    [(ngModel)]="subscriber.email">
-                <label for="email">Zapisz się do naszej subskrypcji</label>
-            </div> 
-        </div>
-    </form>
+<div class="section">
+  <form class="col s6 offset-s3 z-depth-2" (ngSubmit)="onSubmit()" #newsletterForm="ngForm">
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="email" type="email" class="validate" name="email"
+          required
+          [(ngModel)]="subscriber.email">
+        <label for="email">Zapisz się do naszej subskrypcji</label>
+      </div>
+    </div>
+  </form>
 </div>	

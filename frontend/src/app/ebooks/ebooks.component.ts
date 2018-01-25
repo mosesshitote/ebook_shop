@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Ebook } from './ebook';
-import { EbookService } from './ebook.service';
+import { EbookService, Ebook } from '../ebook.service';
 
 @Component({
   selector: 'app-ebooks',
@@ -16,7 +15,11 @@ export class EbooksComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.library.listAll().subscribe(ebooks => this.ebooks = ebooks);
+    this.library.listAllEbooks().subscribe(ebooks => this.ebooks = ebooks);
+  }
+
+  public borrowEbook(ebookId: number) {
+    this.library.borrowEbook(ebookId).subscribe();
   }
 
 }
