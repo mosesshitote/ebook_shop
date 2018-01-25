@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from rest_framework import viewsets, permissions, mixins
+from rest_framework import viewsets, permissions, mixins, response, status
 from django.http import HttpResponse
 from django.utils import timezone
 
@@ -28,7 +28,15 @@ class LoanViewSet(mixins.ListModelMixin,
     permission_classes = (permissions.IsAuthenticated, LoanPermission)
 
     def get_queryset(self):
-        return Loan.objects.filter(client=self.request.user)
+        return Loan.objects.filter(client=self.request.user).filter(expired_at__gte=datetime.now())
+
+    def create(self, request, *args, **kwargs):
+        request.data['client'] = request.user.id
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return response.Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 def get_epub(request, key):
@@ -38,7 +46,7 @@ def get_epub(request, key):
             if timezone.make_aware(datetime.now()) < loan.expired_at:
                 with open(loan.ebook.epub.path, 'rb') as epub_file:
                     response = HttpResponse(epub_file.read(), content_type='application/epub')
-                    response['Content-Disposition'] = 'attachment; filename={}.epub'.format(loan.ebook.name)
+                    response['Content-Disposition'] = 'attachment; filename={}.pdf'.format(loan.ebook.name.replace(' ', '_'))
                     return response
             else:
                 return HttpResponse("Your loan is expired", status=403)

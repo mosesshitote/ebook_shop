@@ -1,5 +1,6 @@
 Django==2.0
 djangorestframework==3.7.3
+djangorestframework-filters
 psycopg2==2.7.3.2
 pytz==2017.2
 gunicorn

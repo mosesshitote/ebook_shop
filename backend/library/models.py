@@ -49,7 +49,6 @@ class Loan(BaseModel):
     ebook = models.ForeignKey(Ebook, on_delete=models.CASCADE)
     client = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     expired_at = models.DateTimeField(default=one_month_later_than_now)
-    # TODO: Is uuid4 is safe key?
     uuid_key = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     def __str__(self):

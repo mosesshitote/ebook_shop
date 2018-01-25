@@ -19,10 +19,10 @@ class EbookSerializer(serializers.ModelSerializer):
 
 
 class LoanSerializer(serializers.ModelSerializer):
-    ebook = EbookSerializer()
+    ebook_object = EbookSerializer(read_only=True, source='ebook')
     expired_at = serializers.DateTimeField(read_only=True)
-    key = serializers.CharField(read_only=True)
+    uuid_key = serializers.CharField(read_only=True)
 
     class Meta:
         model = Loan
-        fields = ('ebook', 'expired_at', 'key',)
+        fields = ('ebook', 'expired_at', 'uuid_key', 'ebook_object', 'client')
